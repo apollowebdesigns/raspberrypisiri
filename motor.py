@@ -1,12 +1,6 @@
 import RPi.GPIO as GPIO
 from time import sleep
-import argparse
-
-parser = argparse.ArgumentParser(description='Process some integers.')
-parser.add_argument('integers', metavar='N', type=int, nargs='+',
-                   help='an integer for the accumulator')
-
-args = parser.parse_args()
+import sys
 
 GPIO.setmode(GPIO.BOARD)
 GPIO.setup(3, GPIO.OUT)
@@ -21,6 +15,6 @@ def SetAngle(angle):
 	GPIO.output(3, False)
 	pwm.ChangeDutyCycle(0)
 
-SetAngle(args.accumulate(args.integers)) 
+SetAngle(sys.argv) 
 pwm.stop()
 GPIO.cleanup()
